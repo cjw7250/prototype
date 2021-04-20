@@ -4,7 +4,7 @@
     "type": "PACKAGED_MANIFESTS",
     "kind": "Directory"
   },
-  "applicationId": "com.example.start_default_app",
+  "applicationId": "com.example.prototype_app",
   "variantName": "debug",
   "elements": [
     {

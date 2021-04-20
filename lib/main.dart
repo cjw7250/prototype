@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:prototype_app/home.dart';
+import 'package:prototype_app/theme.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,9 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Prototype',
-      theme: ThemeData(
-        primaryColor: Colors.black,
-      ),
+      theme: theme(),
       home: Home(),
     );
   }
