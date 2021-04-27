@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:prototype_app/error_message.dart';
+import 'package:prototype_app/screens/sign_in/components/sign_in_error.dart';
 import 'package:prototype_app/size_config.dart';
-import 'package:get/get.dart';
 
 class SignIn extends StatefulWidget {
   @override
@@ -10,9 +11,24 @@ class SignIn extends StatefulWidget {
 class _SignInState extends State<SignIn> {
   final _formKey = GlobalKey<FormState>();
 
-  bool remember = true;
+  String email;
+  String password;
+  bool remember = false;
+  final List<String> errors = [];
 
-  RxBool rxBool = false.obs;
+  void addError({String error}) {
+    if (!errors.contains(error))
+      setState(() {
+        errors.add(error);
+      });
+  }
+
+  void removeError({String error}) {
+    if (errors.contains(error))
+      setState(() {
+        errors.remove(error);
+      });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,10 +67,27 @@ class _SignInState extends State<SignIn> {
                       children: [
                         TextFormField(
                           keyboardType: TextInputType.emailAddress,
+                          onSaved: (newValue) => email = newValue,
+                          onChanged: (value) {
+                            if (value.isNotEmpty) {
+                              removeError(error: kEmailNullError);
+                            } else if (emailValidatorRegExp.hasMatch(value)) {
+                              removeError(error: kInvalidEmailError);
+                            }
+                            return null;
+                          },
+                          validator: (value) {
+                            if (value.isEmpty) {
+                              addError(error: kEmailNullError);
+                              return "";
+                            } else if (!emailValidatorRegExp.hasMatch(value)) {
+                              addError(error: kInvalidEmailError);
+                              return "";
+                            }
+                            return null;
+                          },
                           decoration: InputDecoration(
-                            labelText: 'Email',
                             hintText: 'Enter your email',
-                            labelStyle: TextStyle(color: Colors.white),
                             hintStyle: TextStyle(color: Colors.grey),
                             floatingLabelBehavior: FloatingLabelBehavior.always,
                             enabledBorder: OutlineInputBorder(
@@ -65,6 +98,18 @@ class _SignInState extends State<SignIn> {
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                                 color: Colors.white,
+                              ),
+                            ),
+                            errorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Colors.red,
+                                width: 2.0,
+                              ),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Colors.red,
+                                width: 2.0,
                               ),
                             ),
                           ),
@@ -73,10 +118,27 @@ class _SignInState extends State<SignIn> {
                         SizedBox(height: getProportionateScreenHeight(30.0)),
                         TextFormField(
                           obscureText: true,
+                          onSaved: (newValue) => password = newValue,
+                          onChanged: (value) {
+                            if (value.isNotEmpty) {
+                              removeError(error: kPassNullError);
+                            } else if (value.length >= 8) {
+                              removeError(error: kShortPassError);
+                            }
+                            return null;
+                          },
+                          validator: (value) {
+                            if (value.isEmpty) {
+                              addError(error: kPassNullError);
+                              return '';
+                            } else if (value.length < 8) {
+                              addError(error: kShortPassError);
+                              return '';
+                            }
+                            return null;
+                          },
                           decoration: InputDecoration(
-                            labelText: 'Password',
                             hintText: 'Enter your password',
-                            labelStyle: TextStyle(color: Colors.white),
                             hintStyle: TextStyle(color: Colors.grey),
                             floatingLabelBehavior: FloatingLabelBehavior.always,
                             enabledBorder: OutlineInputBorder(
@@ -87,6 +149,18 @@ class _SignInState extends State<SignIn> {
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                                 color: Colors.white,
+                              ),
+                            ),
+                            errorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Colors.red,
+                                width: 2.0,
+                              ),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Colors.red,
+                                width: 2.0,
                               ),
                             ),
                           ),
@@ -128,6 +202,33 @@ class _SignInState extends State<SignIn> {
                         ),
                       ),
                     ],
+                  ),
+                  FormError(errors: errors),
+                  SizedBox(height: getProportionateScreenHeight(20.0)),
+                  SizedBox(
+                    width: double.infinity,
+                    height: getProportionateScreenHeight(56.0),
+                    child: TextButton(
+                      style: TextButton.styleFrom(
+                        primary: Colors.black,
+                        backgroundColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20.0),
+                        ),
+                      ),
+                      onPressed: () {
+                        if (_formKey.currentState.validate()) {
+                          _formKey.currentState.save();
+                        }
+                      },
+                      child: Text(
+                        'Sign In',
+                        style: TextStyle(
+                          fontSize: getProportionateScreenWidth(18.0),
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
                   ),
                 ],
               ),
