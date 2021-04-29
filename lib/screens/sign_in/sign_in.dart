@@ -13,6 +13,8 @@ class _SignInState extends State<SignIn> {
 
   String email;
   String password;
+  String emailError = '';
+  String passwordError = '';
   bool remember = false;
   final List<String> errors = [];
 
@@ -69,27 +71,32 @@ class _SignInState extends State<SignIn> {
                           keyboardType: TextInputType.emailAddress,
                           onSaved: (newValue) => email = newValue,
                           onChanged: (value) {
-                            if (value.isNotEmpty) {
-                              removeError(error: kEmailNullError);
-                            } else if (emailValidatorRegExp.hasMatch(value)) {
-                              removeError(error: kInvalidEmailError);
-                            }
-                            return null;
+                            setState(() {
+                              if (value.isNotEmpty) {
+                                emailError = '';
+                              } else if (emailValidatorRegExp.hasMatch(value)) {
+                                emailError = '';
+                              }
+                            });
                           },
                           validator: (value) {
-                            if (value.isEmpty) {
-                              addError(error: kEmailNullError);
-                              return "";
-                            } else if (!emailValidatorRegExp.hasMatch(value)) {
-                              addError(error: kInvalidEmailError);
-                              return "";
-                            }
+                            setState(() {
+                              if (value.isEmpty) {
+                                emailError = kEmailNullError;
+                              } else if (!emailValidatorRegExp
+                                  .hasMatch(value)) {
+                                emailError = kInvalidEmailError;
+                              }
+                            });
                             return null;
                           },
                           decoration: InputDecoration(
+                            labelText: 'E-mail',
+                            labelStyle: TextStyle(color: Colors.white),
                             hintText: 'Enter your email',
                             hintStyle: TextStyle(color: Colors.grey),
-                            floatingLabelBehavior: FloatingLabelBehavior.always,
+                            errorText: emailError,
+                            errorStyle: TextStyle(color: Colors.red),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                                 color: Colors.white,
@@ -120,27 +127,34 @@ class _SignInState extends State<SignIn> {
                           obscureText: true,
                           onSaved: (newValue) => password = newValue,
                           onChanged: (value) {
-                            if (value.isNotEmpty) {
-                              removeError(error: kPassNullError);
-                            } else if (value.length >= 8) {
-                              removeError(error: kShortPassError);
-                            }
-                            return null;
+                            setState(() {
+                              if (value.isNotEmpty) {
+                                passwordError = '';
+                              } else if (value.length >= 8) {
+                                passwordError = '';
+                              }
+                              return null;
+                            });
                           },
                           validator: (value) {
-                            if (value.isEmpty) {
-                              addError(error: kPassNullError);
-                              return '';
-                            } else if (value.length < 8) {
-                              addError(error: kShortPassError);
-                              return '';
-                            }
+                            setState(() {
+                              if (value.isEmpty) {
+                                passwordError = kPassNullError;
+                                return '';
+                              } else if (value.length < 8) {
+                                passwordError = kShortPassError;
+                                return '';
+                              }
+                            });
                             return null;
                           },
                           decoration: InputDecoration(
+                            labelText: 'Password',
+                            labelStyle: TextStyle(color: Colors.white),
                             hintText: 'Enter your password',
                             hintStyle: TextStyle(color: Colors.grey),
-                            floatingLabelBehavior: FloatingLabelBehavior.always,
+                            errorText: passwordError,
+                            errorStyle: TextStyle(color: Colors.red),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                                 color: Colors.white,
@@ -203,7 +217,6 @@ class _SignInState extends State<SignIn> {
                       ),
                     ],
                   ),
-                  FormError(errors: errors),
                   SizedBox(height: getProportionateScreenHeight(20.0)),
                   SizedBox(
                     width: double.infinity,
