@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:prototype_app/home.dart';
-import 'package:prototype_app/screens/sign_in/sign_in.dart';
-import 'package:prototype_app/size_config.dart';
+import 'package:prototype_app/screens/welcome/welcome_screen.dart';
 import 'package:prototype_app/theme.dart';
 import 'package:get/get.dart';
 
@@ -16,12 +14,13 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Prototype',
-      theme: theme(),
-      initialRoute: '/signIn',
+      theme: lightThemeData(context),
+      darkTheme: darkThemeData(context),
+      initialRoute: '/welcome',
       getPages: [
         GetPage(
-          name: '/signIn',
-          page: () => SignIn(),
+          name: '/welcome',
+          page: () => WelcomeScreen(),
           transition: Transition.topLevel,
         ),
       ],
