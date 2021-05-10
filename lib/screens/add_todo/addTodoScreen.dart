@@ -7,7 +7,7 @@ class AddTodoScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Page3'),
+        title: Text('작업추가'),
       ),
     );
   }

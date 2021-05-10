@@ -3,7 +3,7 @@ import 'package:prototype_app/screens/add_todo/addTodoScreen.dart';
 import 'package:prototype_app/screens/alarm/alarmScreen.dart';
 import 'package:prototype_app/screens/chats/component/ManufactureList.dart';
 import 'package:prototype_app/screens/home/homeScreen.dart';
-import 'package:prototype_app/screens/todo_list/todoListScreen.dart';
+import 'package:prototype_app/screens/todo_list/todo_list_screen.dart';
 import 'package:prototype_app/screens/welcome/welcome_screen.dart';
 import 'package:prototype_app/theme.dart';
 import 'package:get/get.dart';
@@ -27,18 +27,6 @@ class MyApp extends StatelessWidget {
           name: '/welcome',
           page: () => WelcomeScreen(),
           transition: Transition.topLevel,
-        ),
-        GetPage(
-          name: '/todo_list',
-          page: () => TodoListScreen(),
-        ),
-        GetPage(
-          name: '/alarm',
-          page: () => AlarmScreen(),
-        ),
-        GetPage(
-          name: '/add_todo',
-          page: () => AddTodoScreen(),
         ),
       ],
     );

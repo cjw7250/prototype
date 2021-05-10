@@ -3,7 +3,7 @@ import 'package:prototype_app/constants.dart';
 import 'package:get/get.dart';
 import 'package:prototype_app/route.dart';
 import 'package:prototype_app/screens/sign_in/signin_or_signup_screen.dart';
-import 'package:prototype_app/screens/todo_list/todoListScreen.dart';
+import 'package:prototype_app/screens/todo_list/todo_list_screen.dart';
 import 'package:prototype_app/size_config.dart';
 
 class WelcomeScreen extends StatelessWidget {

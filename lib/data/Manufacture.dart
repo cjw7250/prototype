@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:prototype_app/constants.dart';
 
 class Manufacture {
   final String date;
