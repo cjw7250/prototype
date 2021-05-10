@@ -4,7 +4,7 @@ import 'package:prototype_app/constants.dart';
 import 'package:prototype_app/data/Manufacture.dart';
 import 'package:prototype_app/size_config.dart';
 
-class ManufactureList extends StatelessWidget {
+class TodoList extends StatelessWidget {
   final SlidableController slidableController = SlidableController();
 
   @override

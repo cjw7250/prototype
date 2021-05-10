@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:prototype_app/screens/add_todo/addTodoScreen.dart';
-import 'package:prototype_app/screens/alarm/alarmScreen.dart';
+import 'package:prototype_app/screens/add_todo/add_todo_screen.dart';
+import 'package:prototype_app/screens/alarm/alarm_screen.dart';
 import 'package:prototype_app/screens/home/bottomNavController.dart';
 import 'package:prototype_app/screens/todo_list/todo_list_screen.dart';
 

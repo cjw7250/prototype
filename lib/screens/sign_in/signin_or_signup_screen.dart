@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:prototype_app/components/primary_button.dart';
 import 'package:prototype_app/constants.dart';
 import 'package:prototype_app/route.dart';
-import 'package:prototype_app/screens/alarm/alarmScreen.dart';
+import 'package:prototype_app/screens/alarm/alarm_screen.dart';
 import 'package:prototype_app/screens/home/homeScreen.dart';
 
 class SigninOrSignupScreen extends StatelessWidget {
