@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:prototype_app/components/primary_button.dart';
 import 'package:prototype_app/constants.dart';
-import 'package:prototype_app/screens/chats/chats_screen.dart';
+import 'package:prototype_app/route.dart';
+import 'package:prototype_app/screens/alarm/alarmScreen.dart';
+import 'package:prototype_app/screens/home/homeScreen.dart';
 
 class SigninOrSignupScreen extends StatelessWidget {
   @override
@@ -31,8 +33,8 @@ class SigninOrSignupScreen extends StatelessWidget {
                 text: "Sign Up",
                 press: () {
                   Get.off(
-                    ChatsScreen(),
-                    transition: Transition.noTransition,
+                    HomeScreen(),
+                    transition: Transition.topLevel,
                   );
                 },
               ),
