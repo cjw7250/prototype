@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:prototype_app/constants.dart';
 import 'package:prototype_app/data/Alarm.dart';
 
 class Body extends StatelessWidget {
@@ -7,49 +8,29 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     getSortByDate();
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ...List.generate(
-                alarmData.length,
-                (index) {
-                  return Container(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          children: [
-                            Text('${alarmData[index].workEffortId}'),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Column(
-                              children: [
-                                Text('${alarmData[index].date}'),
-                                Text('${alarmData[index].productName}'),
-                              ],
-                            ),
-                          ],
-                        ),
-                        Column(
-                          children: [
-                            Text('${alarmData[index].description}'),
-                          ],
-                        )
-                      ],
-                    ),
-                  );
-                },
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
+    // return ListView.builder(
+    //   itemCount: alarmData.length,
+    //   itemBuilder: (context, index) => Padding(
+    //     padding: EdgeInsets.all(kDefaultPadding),
+    //     child: Container(
+    //       decoration: BoxDecoration(
+    //         borderRadius: BorderRadius.circular(5),
+    //         border: Border.all(
+    //           color: Colors.black,
+    //         ),
+    //       ),
+    //       child: Column(
+    //         children: [
+    //           Text('${getDateFormat(alarmData[index].date)}'),
+    //           Text('${getDateFormat(alarmData[index].date)}'),
+    //           Text('${getDateFormat(alarmData[index].date)}'),
+    //           Text('${getDateFormat(alarmData[index].date)}'),
+    //         ],
+    //       ),
+    //     ),
+    //   ),
+    // );
+
+    return Grouped
   }
 }

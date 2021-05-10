@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 class Alarm {
   final DateTime date;
   final String productId;
@@ -112,6 +114,8 @@ void getSortByDate() {
   alarmData.sort((a, b) => b.date.compareTo(a.date));
 }
 
-String getDateFormat(int index){
-  return DateFormat()
+String getDateFormat(DateTime datetime) {
+  return DateFormat('yyyy-MM-dd HH:mm:ss').format(datetime);
 }
+
+groupBy(alarmData, (alarm) => alarm['date']);
