@@ -20,6 +20,7 @@ dependencies:
   intl: ^0.17.0
   collection: ^1.15.0
   sticky_headers: ^0.2.0
+  material_floating_search_bar: ^0.3.4
 
 dev_dependencies:
   flutter_test:

@@ -2,9 +2,9 @@ import 'package:intl/intl.dart';
 import 'package:collection/collection.dart';
 
 class Product {
-  final String productId;
-  final String productName;
-  final String firstWord;
+  String productId;
+  String productName;
+  String firstWord;
 
   Product({
     this.productId,
@@ -212,7 +212,7 @@ List<Product> productData = [
 ];
 
 void getSortByFirstWord() {
-  productData.sort((a, b) => a.firstWord.compareTo(b.firstWord));
+  productData.sort((a, b) => a.productName.compareTo(b.productName));
 }
 
 Map<String, List<Product>> getListGroupByFirstWord() {

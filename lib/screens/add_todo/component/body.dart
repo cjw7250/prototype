@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:prototype_app/constants.dart';
+import 'package:prototype_app/controller/product_controller.dart';
 import 'package:prototype_app/screens/find_product/find_product_screen.dart';
 import 'package:prototype_app/size_config.dart';
 
@@ -9,6 +10,8 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(ProductController());
+
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -25,31 +28,57 @@ class Body extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  // Expanded(
+                  //   child: Container(
+                  //     padding: EdgeInsets.symmetric(
+                  //       horizontal: 10,
+                  //     ),
+                  //     child: Text(
+                  //       '품명',
+                  //       style: TextStyle(
+                  //         fontSize: getProportionateScreenWidth(25),
+                  //         fontWeight: FontWeight.bold,
+                  //         color: Colors.grey,
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
                   Expanded(
                     child: Container(
                       padding: EdgeInsets.symmetric(
                         horizontal: 10,
                       ),
-                      child: Text(
-                        '품명',
-                        style: TextStyle(
-                          fontSize: getProportionateScreenWidth(25),
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey,
+                      decoration: BoxDecoration(
+                        border: Border(
+                          right: BorderSide(
+                            color: kPrimaryColor,
+                            width: 2.0,
+                          ),
+                        ),
+                      ),
+                      child: Obx(
+                        () => TextFormField(
+                          readOnly: true,
+                          initialValue:
+                              '${Get.find<ProductController>().product.value.productName}',
+                          decoration: InputDecoration(
+                            hintText: '품명',
+                            hintStyle: TextStyle(
+                              color: Colors.grey,
+                            ),
+                            focusedBorder: InputBorder.none,
+                            border: InputBorder.none,
+                          ),
+                          style: TextStyle(
+                            fontSize: getProportionateScreenWidth(25),
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),
                   ),
                   Container(
                     padding: EdgeInsets.all(0),
-                    decoration: BoxDecoration(
-                      border: Border(
-                        left: BorderSide(
-                          color: kPrimaryColor,
-                          width: 2.0,
-                        ),
-                      ),
-                    ),
                     child: TextButton(
                       onPressed: () {
                         Get.to(
